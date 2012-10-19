@@ -32,13 +32,12 @@ class Auth(SeleniumTestCase):
         # Open the admin index page
         self.open(reverse('admin:index'))
         
-        # since all instructions are non-blocking, but loading a new page takes
-        # time, we'll call the wait_for_css helper method and have it wait
-        # for the username field.
-        # Since the helper method wait_for_css returns the element itself
-        # we can call the built-in send_keys method to change the
+        # Selenium knows it has to wait for page loads
+        # so we don't need to do anything about that, and can just
+        # call find_css. Since we can chain methods, we can
+        # call the built-in send_keys method right away to change the
         # value of the field
-        self.wd.wait_for_css('#id_username').send_keys("admin")
+        self.wd.find_css('#id_username').send_keys("admin")
         # for the password, we can now just call find_css since we know the page
         # has been rendered
         self.wd.find_css("#id_password").send_keys('pw')
@@ -46,7 +45,7 @@ class Auth(SeleniumTestCase):
         # http://seleniumhq.org/docs/03_webdriver.html for 
         # a more compreehensive documentation.
         self.wd.find_element_by_xpath('//input[@value="Log in"]').click()
-        # Again, after submiting the form, we'll use the wait_for_css helper
+        # Again, after submiting the form, we'll use the find_css helper
         # method and pass as a CSS selector, an id that will only exist
         # on the index page and not the login page
-        self.wd.wait_for_css("#content-main")
+        self.wd.find_css("#content-main")
