@@ -1,13 +1,16 @@
-import time
+from django.conf import settings
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 
-try:
-    from selenium_intro.local_settings import SELENIUM_WEBDRIVER
-except:
-    from selenium.webdriver.firefox import webdriver as SELENIUM_WEBDRIVER
 
-class CustomWebDriver(SELENIUM_WEBDRIVER.WebDriver):
+#determine the WebDriver module. default to Firefox
+try:
+    web_driver_module = settings.SELENIUM_WEBDRIVER
+except AttributeError:
+    from selenium.webdriver.firefox import webdriver as web_driver_module
+
+
+class CustomWebDriver(web_driver_module.WebDriver):
     """Our own WebDriver with some helpers added"""
 
     def find_css(self, css_selector):
