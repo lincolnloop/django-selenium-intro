@@ -1,11 +1,17 @@
 # Django settings for selenium_intro project.
 
+import os
+import selenium_intro
+PROJECT_MODULE_PATH = os.path.dirname(os.path.realpath(selenium_intro.__file__))
+
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
+
 
 MANAGERS = ADMINS
 
@@ -106,6 +112,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.join(PROJECT_MODULE_PATH, 'templates'),
 )
 
 INSTALLED_APPS = (
@@ -116,8 +123,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    
-    'selenium_intro',
+
+    'selenium_intro.selenium_tests',
 )
 
 # A sample logging configuration. The only tangible logging

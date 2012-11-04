@@ -1,4 +1,3 @@
-import time
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
@@ -7,14 +6,14 @@ from selenium_intro.selenium_tests.webdriver import CustomWebDriver
 
 # Make sure your class inherits from your base class
 class Auth(SeleniumTestCase):
-        
+
     def setUp(self):
         # setUp is where you setup call fixture creation scripts
         # and instantiate the WebDriver, which in turns loads up the browser.
         User.objects.create_superuser(username='admin',
                                       password='pw',
                                       email='info@lincolnloop.com')
-        
+
         # Instantiating the WebDriver will load your browser
         self.wd = CustomWebDriver()
 
@@ -31,7 +30,7 @@ class Auth(SeleniumTestCase):
         """
         # Open the admin index page
         self.open(reverse('admin:index'))
-        
+
         # Selenium knows it has to wait for page loads (except for AJAX requests)
         # so we don't need to do anything about that, and can just
         # call find_css. Since we can chain methods, we can
@@ -42,7 +41,7 @@ class Auth(SeleniumTestCase):
         # has been rendered
         self.wd.find_css("#id_password").send_keys('pw')
         # You're not limited to CSS selectors only, check
-        # http://seleniumhq.org/docs/03_webdriver.html for 
+        # http://seleniumhq.org/docs/03_webdriver.html for
         # a more compreehensive documentation.
         self.wd.find_element_by_xpath('//input[@value="Log in"]').click()
         # Again, after submiting the form, we'll use the find_css helper
