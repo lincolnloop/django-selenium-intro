@@ -4,7 +4,7 @@
 Django Selenium Intro
 ======================
 
-``django-selenium-intro`` is the example project from  <blog post url goeshere>
+``django-selenium-intro`` is the example project from  http://lincolnloop.com/blog/introduction-django-selenium-testing/
 
 
 .. {% endcomment %}
